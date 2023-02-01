@@ -1,0 +1,8 @@
+{
+  "extends": "@gilbarbara/tsconfig",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node"
+  }
+}
