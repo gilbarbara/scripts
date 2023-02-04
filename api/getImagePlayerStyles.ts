@@ -17,7 +17,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const fileType = await fileTypeFromBuffer(buffer);
 
   const colors = await getImageColors(buffer, {
-    count: 1,
+    count: 2,
     type: fileType?.mime,
   });
 
@@ -25,12 +25,17 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     response.status(500).send('No colors found');
   }
 
+  const altColor = colors[1].hex();
   const baseColor = colors[0].hex();
   const color = textColor(baseColor);
 
   response.send({
+    altColor,
     bgColor: baseColor,
     color,
+    sliderColor: color,
+    sliderHandleColor: color,
+    sliderTrackColor: fade(color, 70),
     trackArtistColor: fade(color, 30),
     trackNameColor: color,
   });
