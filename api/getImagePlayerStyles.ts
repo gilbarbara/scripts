@@ -6,8 +6,12 @@ import getImageColors from 'get-image-colors';
 export default async (request: VercelRequest, response: VercelResponse) => {
   const { quantity, url } = request.query as Record<string, string>;
 
+  if (request.method !== 'GET') {
+    return response.status(405).end();
+  }
+
   if (!url) {
-    response.status(400).send('No url provided');
+    return response.status(400).send('No url provided');
   }
 
   const fetchUrl = await fetch(url);
@@ -25,9 +29,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       response.status(500).send('No colors found');
     }
 
-    response.send(colors.map(color => color.hex()));
-
-    return;
+    return response.send(colors.map(color => color.hex()));
   }
 
   const colors = await getImageColors(buffer, {
@@ -48,7 +50,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const bgColor = colorLuminance <= 0.02 ? lighten(baseColor, 10) : darken(baseColor, maxValue);
   const color = textColor(bgColor);
 
-  response.send({
+  return response.send({
     altColor,
     bgColor,
     color,
