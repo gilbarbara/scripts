@@ -3,19 +3,20 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
-    "@swc/core": "^1.3.59",
+    "@swc/core": "^1.3.67",
+    "@vercel/postgres": "^0.4.0",
     "colorizr": "^2.1.1",
-    "file-type": "^18.4.0",
+    "file-type": "^18.5.0",
     "get-image-colors": "^4.0.1"
   },
   "devDependencies": {
-    "@gilbarbara/eslint-config": "^0.4.3",
+    "@gilbarbara/eslint-config": "^0.4.4",
     "@gilbarbara/prettier-config": "^0.1.1",
     "@gilbarbara/tsconfig": "^0.1.1",
     "@types/get-image-colors": "^4.0.2",
-    "@types/node": "^18.11.18",
-    "@vercel/node": "^2.14.3",
-    "typescript": "^5.0.4"
+    "@types/node": "^20.3.3",
+    "@vercel/node": "^2.15.3",
+    "typescript": "^5.1.6"
   },
   "scripts": {
     "start": "vercel dev --listen 4000"
