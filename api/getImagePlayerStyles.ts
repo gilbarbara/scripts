@@ -6,6 +6,10 @@ import getImageColors from 'get-image-colors';
 export default async (request: VercelRequest, response: VercelResponse) => {
   const { quantity, url } = request.query as Record<string, string>;
 
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
+  }
+
   if (request.method !== 'GET') {
     return response.status(405).end();
   }

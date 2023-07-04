@@ -1,6 +1,7 @@
 .env
+.swc
 .vercel
-/coverage
 /build
+/coverage
 /node_modules
 

@@ -3,11 +3,15 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 const admins = ['gilbarbara'];
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  const { code } = request.query as Record<string, string>;
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
+  }
 
-  if (request.method !== 'GET') {
+  if (request.method !== 'POST') {
     return response.status(405).end();
   }
+
+  const { code } = request.query as Record<string, string>;
 
   if (!code) {
     return response.status(400).send('No code provided');
